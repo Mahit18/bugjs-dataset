@@ -1,0 +1,8 @@
+FROM rshariffdeen/darjeeling
+ADD . /setup/bugjs/Express/Express-1/
+RUN sudo bash -c 'groupadd -g 1011 cerberus' 
+RUN sudo bash -c "cut -d: -f1 /etc/passwd | xargs -i usermod -g cerberus {} "
+COPY --from=bugjs-express-express-1 --chown=darjeeling:cerberus /experiment /experiment
+COPY --from=bugjs-express-express-1 --chown=darjeeling:cerberus /logs /logs
+COPY --from=bugjs-express-express-1 --chown=darjeeling:cerberus /root/ /home/darjeeling/
+ENTRYPOINT ["/bin/sh"]

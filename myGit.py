@@ -31,11 +31,7 @@ def get_project_repository(param_dict):
     exit()
 
 def clone_repo(project_repo, folder):
-    if os.path.isdir(folder):
-        rm_cmd = "rm -R "+str(folder)
-        sp.call(rm_cmd, shell=True)
-    os.makedirs(folder)
-
+    os.makedirs(folder, exist_ok=True)
     os.chdir(folder)
     clone_cmd = "git clone "+str(project_repo)
     sp.call(clone_cmd, shell=True)

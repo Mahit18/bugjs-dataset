@@ -30,24 +30,13 @@ for name, bug_count in projects:
             shutil.copy(script,os.path.join(name, f"{name}-{bug}",script))
         id += 1
         proc = subprocess.Popen(
-            ["python3 main.py -p {} -i {}".format(name, bug)],
+            ["python3 main.py -p {} -b {} -t info -v buggy".format(name, bug)],
             stdout=subprocess.PIPE,
             shell=True,
         )
-
         (out, err) = proc.communicate()
         data = out.decode("utf-8")
         lines = data.split("\n")
-        fix_commit = "N/A"
-        bug_commit = "N/A"
-        github_url = "N/A"
-        for i, line in enumerate(lines):
-            if line.startswith("Revision id"):
-                fix_commit = lines[i + 1].strip()
-            if line.startswith("Buggy id"):
-                bug_commit = lines[i + 1].strip()
-            if line.startswith("Github URL"):
-                github_url = line.split(":")[1].strip()
         print(data)
         result.append(
             {
@@ -55,7 +44,7 @@ for name, bug_count in projects:
                 "subject": name,
                 "bug_id": f"{name}-{bug}",
                 "test_timeout": 5,
-                "language": "python",
+                "language": "js",
                 "build_script": "build_subject",
                 "config_script": "config_subject",
                 "clean_script": "clean_subject",
@@ -64,8 +53,6 @@ for name, bug_count in projects:
                 "count_pos": 0,
                 "failing_test_identifiers": [],
                 "count_neg": 0,
-                "bug_commit": bug_commit,
-                "fix_commit": fix_commit,
                 "line_numbers": [],
                 "dependencies": [],
             }
