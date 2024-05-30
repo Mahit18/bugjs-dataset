@@ -10,4 +10,5 @@ ID=$1
 
 python3 /work/bugjs/main.py -p $project_name -b $ID -t checkout -v buggy -o $PWD
 rm -rf src
+project_name=$(echo "$project_name" | tr '[:upper:]' '[:lower:]')
 mv $project_name src
