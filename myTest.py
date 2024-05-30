@@ -140,7 +140,7 @@ def run_npm_install():
 # ======================= tests =============
 
 def test(param_dict):
-    myGit.checkout(param_dict)
+    # myGit.checkout(param_dict)
     set_node_version(get_command(param_dict, "Node version"))
 
     if get_command(param_dict, "Pre-command").count(".sh")==0:
@@ -157,7 +157,7 @@ def test(param_dict):
 
 
 def per_test(param_dict):
-    myGit.checkout(param_dict)
+    # myGit.checkout(param_dict)
     set_node_version(get_command(param_dict, "Node version"))
 
     run_npm_install()
