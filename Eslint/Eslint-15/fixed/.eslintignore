@@ -1,0 +1,11 @@
+/bin/**
+/build/**
+/conf/**
+/coverage/**
+/docs/**
+/templates/**
+/tests/bench/**
+/tests/fixtures/**
+/tests/performance/**
+/tmp/**
+test.js
