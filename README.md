@@ -55,3 +55,22 @@ Example command:
 ```
 python3 main.py -p Bower -b 1 -t checkout -v fixed -o output/
 ```
+## Make a sample ACR input
+
+To make the input of a project: project-name with bug-id : i, run the following command:
+```
+python3 acr_input.py -p project_name -b i
+```
+
+The sample input will have:
+* The buggy version of the project
+* The developer patch by the developer to fix the bugs
+* The problem issue statement, which, currently is the entire results obtained from running the tests on the project
+
+## Make all ACR inputs
+To make the inputs for all possible projects and bugs:
+```
+python3 make_all_acr_inputs.py
+```
+This will make the inputs on the filtered subset of projects on which tests could be run.
+
